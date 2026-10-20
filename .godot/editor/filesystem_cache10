@@ -1,0 +1,17 @@
+78098b89c88a74ebe8c20117b8754620
+::res://::1792526453
+block_art.gd::GDScript::5289123329830476448::1792526443::0::1::::BlockArt<>RefCounted<><>0<>0<><>::
+block_grid.gd::GDScript::4434427412910341633::1792526443::0::1::::BlockGrid<>Node2D<><>0<>0<><>::
+block_swatch.gd::GDScript::4589185186842064229::1792526443::0::1::::BlockSwatch<>Control<><>0<>0<><>::
+block_swatch.tscn::PackedScene::-1::1792526443::0::1::::<><><>0<>0<><>::res://block_swatch.gd
+boundaries.gd::GDScript::3120605544998288834::1792526443::0::1::::<>StaticBody2D<><>0<>0<><>::
+config.gd::GDScript::4656373199334505865::1792526443::0::1::::Config<>RefCounted<><>0<>0<><>::
+drag_ghost.gd::GDScript::9078832265522153378::1792526443::0::1::::DragGhost<>Control<><>0<>0<><>::
+main.gd::GDScript::9152172581327893722::1792526443::0::1::::<>Node<><>0<>0<><>::
+main.tscn::PackedScene::-1::1792526443::0::1::::<><><>0<>0<><>::res://main.gd<>res://strip.gd<>res://block_grid.gd<>res://view_camera.gd<>res://sidebar.gd<>res://right_panel.gd<>res://drag_ghost.gd<>res://block_swatch.tscn<>res://rocket.gd<>res://boundaries.gd
+right_panel.gd::GDScript::6466117322115426144::1792526443::0::1::::RightPanel<>Panel<><>0<>0<><>::
+rocket.gd::GDScript::3555652366187480246::1792526443::0::1::::Rocket<>Node2D<><>0<>0<><>::
+rocket_body.gd::GDScript::3212958839109176515::1792526443::0::1::::RocketBody<>RigidBody2D<><>0<>0<><>::
+sidebar.gd::GDScript::1365344638934158796::1792526443::0::1::::Sidebar<>Panel<><>0<>0<><>::
+strip.gd::GDScript::3473039866144295763::1792526443::0::1::::<>Node2D<><>0<>0<><>::
+view_camera.gd::GDScript::8810935003250756504::1792526443::0::1::::ViewCamera<>Camera2D<><>0<>0<><>::

@@ -1,0 +1,186 @@
+[gd_scene load_steps=12 format=3]
+
+[ext_resource type="Script" path="res://main.gd" id="1_main"]
+[ext_resource type="Script" path="res://strip.gd" id="2_strip"]
+[ext_resource type="Script" path="res://block_grid.gd" id="3_grid"]
+[ext_resource type="Script" path="res://view_camera.gd" id="4_camera"]
+[ext_resource type="Script" path="res://sidebar.gd" id="5_sidebar"]
+[ext_resource type="Script" path="res://right_panel.gd" id="6_right"]
+[ext_resource type="Script" path="res://drag_ghost.gd" id="7_ghost"]
+[ext_resource type="PackedScene" path="res://block_swatch.tscn" id="8_swatch"]
+[ext_resource type="Script" path="res://rocket.gd" id="9_rocket"]
+[ext_resource type="Script" path="res://boundaries.gd" id="10_bounds"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bar"]
+bg_color = Color(0.12, 0.13, 0.18, 1)
+
+[node name="Main" type="Node"]
+script = ExtResource("1_main")
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="Strip" type="Node2D" parent="World"]
+script = ExtResource("2_strip")
+
+[node name="BlockGrid" type="Node2D" parent="World"]
+script = ExtResource("3_grid")
+
+[node name="Rocket" type="Node2D" parent="World"]
+script = ExtResource("9_rocket")
+
+[node name="Boundaries" type="StaticBody2D" parent="World"]
+script = ExtResource("10_bounds")
+
+[node name="ViewCamera" type="Camera2D" parent="World"]
+anchor_mode = 0
+script = ExtResource("4_camera")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Sidebar" type="Panel" parent="UI"]
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 180.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bar")
+script = ExtResource("5_sidebar")
+
+[node name="Column" type="VBoxContainer" parent="UI/Sidebar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 24.0
+offset_right = -16.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 14
+
+[node name="TitleLabel" type="Label" parent="UI/Sidebar/Column"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "BLOCKS"
+horizontal_alignment = 1
+
+[node name="Swatches" type="VBoxContainer" parent="UI/Sidebar/Column"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="SwatchSolid" parent="UI/Sidebar/Column/Swatches" instance=ExtResource("8_swatch")]
+layout_mode = 2
+size_flags_horizontal = 4
+block_type = 0
+
+[node name="SwatchThruster" parent="UI/Sidebar/Column/Swatches" instance=ExtResource("8_swatch")]
+layout_mode = 2
+size_flags_horizontal = 4
+block_type = 1
+
+[node name="SwatchGoal" parent="UI/Sidebar/Column/Swatches" instance=ExtResource("8_swatch")]
+layout_mode = 2
+size_flags_horizontal = 4
+block_type = 2
+
+[node name="HintLabel" type="Label" parent="UI/Sidebar/Column"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "Press R while dragging a thruster to turn it."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="EraseButton" type="Button" parent="UI/Sidebar/Column"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+toggle_mode = true
+text = "Erase: OFF"
+
+[node name="ClearButton" type="Button" parent="UI/Sidebar/Column"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Clear All"
+
+[node name="RightPanel" type="Panel" parent="UI"]
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -110.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bar")
+script = ExtResource("6_right")
+
+[node name="Column" type="VBoxContainer" parent="UI/RightPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = 30.0
+offset_right = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="HeightLabel" type="Label" parent="UI/RightPanel/Column"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "HEIGHT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UpButton" type="Button" parent="UI/RightPanel/Column"]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "UP"
+
+[node name="DownButton" type="Button" parent="UI/RightPanel/Column"]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "DOWN"
+
+[node name="Spacer" type="Control" parent="UI/RightPanel/Column"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="UI/RightPanel/Column"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "START"
+
+[node name="ResetButton" type="Button" parent="UI/RightPanel/Column"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "RESET"
+
+[node name="StatusLabel" type="Label" parent="UI"]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -250.0
+offset_top = 24.0
+offset_right = 250.0
+offset_bottom = 72.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.5, 1, 0.6, 1)
+theme_override_font_sizes/font_size = 32
+text = "GOAL REACHED. YOU WIN!"
+horizontal_alignment = 1
+
+[node name="DragGhost" type="Control" parent="UI"]
+visible = false
+anchors_preset = 0
+offset_right = 64.0
+offset_bottom = 64.0
+mouse_filter = 2
+script = ExtResource("7_ghost")
